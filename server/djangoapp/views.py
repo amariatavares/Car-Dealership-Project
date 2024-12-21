@@ -14,7 +14,7 @@ import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
 
-from server.djangoapp.restapis import (
+from .restapis import (
     analyze_review_sentiments,
     get_request,
     post_review,
@@ -107,7 +107,7 @@ def get_dealerships(request, state="All"):
     if state == "All":
         endpoint = "/fetchDealers"
     else:
-        endpoint = f"/fetchDealers?state={state}"
+        endpoint = f"/fetchDealers/{state}"
     dealerships = get_request(endpoint)
     return JsonResponse({"status": 200, "dealers": dealerships})
 

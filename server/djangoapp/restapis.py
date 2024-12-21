@@ -20,9 +20,12 @@ def get_request(endpoint, **kwargs):
         for key, value in kwargs.items():
             params += f"{key}={value}&"
 
-    request_url = f"{backend_url}{endpoint}?{params}"
+    if params != "":
+        request_url = f"{backend_url}{endpoint}?{params}"
+    else: 
+        request_url = f"{backend_url}{endpoint}"
+    
     print(f"GET FROM {request_url}")
-
     try:
         response = requests.get(request_url)
         return response.json()
